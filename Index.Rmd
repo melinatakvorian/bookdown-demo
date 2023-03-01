@@ -1,0 +1,14 @@
+---
+title: "ESS 523A Bookdown"
+author: "Melina"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: "This is the first part of a bookdown, essentially the cover page."
+---
+
+#My Intro{-}
+
+This is my example of a bookdown document. Blah blah blah.
+

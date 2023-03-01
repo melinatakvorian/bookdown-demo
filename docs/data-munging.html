@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Data Munging | ESS 523A Bookdown</title>
+  <meta name="description" content="This is the first part of a bookdown, essentially the cover page." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Data Munging | ESS 523A Bookdown" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the first part of a bookdown, essentially the cover page." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Data Munging | ESS 523A Bookdown" />
+  
+  <meta name="twitter:description" content="This is the first part of a bookdown, essentially the cover page." />
+  
+
+<meta name="author" content="Melina" />
+
+
+<meta name="date" content="2023-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="apis-and-iteration.html"/>
+<link rel="next" href="my-intro-this-is-not-a-chapter-this-is-just-a-header.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html"><i class="fa fa-check"></i><b>1</b> APIs and Iteration</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#apis"><i class="fa fa-check"></i><b>1.1</b> APIs</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#nps-visitation-data"><i class="fa fa-check"></i><b>1.1.1</b> NPS Visitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#functions"><i class="fa fa-check"></i><b>1.2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#functionize-api-pulls"><i class="fa fa-check"></i><b>1.2.1</b> Functionize API Pulls</a></li>
+<li class="chapter" data-level="1.2.2" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#function-defaults"><i class="fa fa-check"></i><b>1.2.2</b> Function Defaults</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#iterations"><i class="fa fa-check"></i><b>1.3</b> Iterations</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#for-loops"><i class="fa fa-check"></i><b>1.3.1</b> For loops</a></li>
+<li class="chapter" data-level="1.3.2" data-path="apis-and-iteration.html"><a href="apis-and-iteration.html#mapping"><i class="fa fa-check"></i><b>1.3.2</b> Mapping</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-munging.html"><a href="data-munging.html"><i class="fa fa-check"></i><b>2</b> Data Munging</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="data-munging.html"><a href="data-munging.html#lesson-objectives-1"><i class="fa fa-check"></i><b>2.0.1</b> Lesson Objectives</a></li>
+<li class="chapter" data-level="2.1" data-path="data-munging.html"><a href="data-munging.html#pulling-in-necessary-packages-and-data-sets"><i class="fa fa-check"></i><b>2.1</b> Pulling in necessary packages and data sets</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-munging.html"><a href="data-munging.html#exercise-1-1"><i class="fa fa-check"></i><b>2.1.1</b> Exercise #1</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-munging.html"><a href="data-munging.html#exploring-our-data"><i class="fa fa-check"></i><b>2.2</b> Exploring our data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-munging.html"><a href="data-munging.html#exercise-2-1"><i class="fa fa-check"></i><b>2.2.1</b> Exercise #2</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-munging.html"><a href="data-munging.html#pivoting"><i class="fa fa-check"></i><b>2.3</b> Pivoting</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-munging.html"><a href="data-munging.html#exercise-3-1"><i class="fa fa-check"></i><b>2.3.1</b> Exercise #3</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-munging.html"><a href="data-munging.html#joining"><i class="fa fa-check"></i><b>2.4</b> Joining</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data-munging.html"><a href="data-munging.html#exercise-4-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercise #4</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-munging.html"><a href="data-munging.html#exercise-5-1"><i class="fa fa-check"></i><b>2.4.2</b> Exercise #5</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-munging.html"><a href="data-munging.html#lesson-objectives-2"><i class="fa fa-check"></i><b>2.5</b> Lesson Objectives:</a></li>
+<li class="chapter" data-level="2.6" data-path="data-munging.html"><a href="data-munging.html#streaflow-datasets"><i class="fa fa-check"></i><b>2.6</b> Streaflow Datasets</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="data-munging.html"><a href="data-munging.html#usgs-dataretrieval-r-package"><i class="fa fa-check"></i><b>2.6.1</b> USGS <code>dataRetrieval</code> R package</a></li>
+<li class="chapter" data-level="2.6.2" data-path="data-munging.html"><a href="data-munging.html#cdwrs-api"><i class="fa fa-check"></i><b>2.6.2</b> CDWR’s API</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data-munging.html"><a href="data-munging.html#exercise-1-2"><i class="fa fa-check"></i><b>2.7</b> Exercise #1</a></li>
+<li class="chapter" data-level="2.8" data-path="data-munging.html"><a href="data-munging.html#exercise-2-2"><i class="fa fa-check"></i><b>2.8</b> Exercise #2</a></li>
+<li class="chapter" data-level="2.9" data-path="data-munging.html"><a href="data-munging.html#exercise-3-2"><i class="fa fa-check"></i><b>2.9</b> Exercise #3</a></li>
+<li class="chapter" data-level="2.10" data-path="data-munging.html"><a href="data-munging.html#exercise-4-2"><i class="fa fa-check"></i><b>2.10</b> Exercise #4</a></li>
+<li class="chapter" data-level="2.11" data-path="data-munging.html"><a href="data-munging.html#exercise-5-2"><i class="fa fa-check"></i><b>2.11</b> Exercise #5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="my-intro-this-is-not-a-chapter-this-is-just-a-header.html"><a href="my-intro-this-is-not-a-chapter-this-is-just-a-header.html"><i class="fa fa-check"></i>My Intro, this is not a chapter, this is just a header</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ESS 523A Bookdown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-munging" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Data Munging<a href="data-munging.html#data-munging" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lesson-objectives-1" class="section level3 hasAnchor" number="2.0.1">
+<h3><span class="header-section-number">2.0.1</span> Lesson Objectives<a href="data-munging.html#lesson-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the last lesson, we learned how to pull data from an API and reduce redundancies in our workflows through functions and iterations. In this lesson we will use the functions in the previous lesson to learn how to manipulate data frames with the <code>tidyverse</code>, and plot elegant time series graphs with the <code>ggplot()</code>, <code>scales</code> and <code>plotly</code> packages.</p>
+<p>There are <strong>five exercises</strong> in this lesson that must be completed.</p>
+</div>
+<div id="pulling-in-necessary-packages-and-data-sets" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Pulling in necessary packages and data sets<a href="data-munging.html#pulling-in-necessary-packages-and-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-munging.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb36-2"><a href="data-munging.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb36-3"><a href="data-munging.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb36-4"><a href="data-munging.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb36-5"><a href="data-munging.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb36-6"><a href="data-munging.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)  </span></code></pre></div>
+<p>Using the <code>parkwide_visitation()</code> function from the last lesson and mapping, let’s pull park-wide visitor data from 1980-2021, and name the final object <code>parkwide</code>. (Code hack: we can use <code>1980:2021</code> to create a vector of years so we don’t have to write each year out!)</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-munging.html#cb37-1" aria-hidden="true" tabindex="-1"></a>parkwide_visitation <span class="ot">&lt;-</span> <span class="cf">function</span>(year){</span>
+<span id="cb37-2"><a href="data-munging.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="data-munging.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  raw_data <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(<span class="at">url =</span> </span>
+<span id="cb37-4"><a href="data-munging.html#cb37-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">paste0</span>(<span class="st">&quot;https://irmaservices.nps.gov/v3/rest/stats/total/&quot;</span>, year))</span>
+<span id="cb37-5"><a href="data-munging.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  extracted_data <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">content</span>(raw_data, <span class="at">as =</span> <span class="st">&quot;text&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) </span>
+<span id="cb37-6"><a href="data-munging.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  final_data <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(extracted_data)</span>
+<span id="cb37-7"><a href="data-munging.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final_data)</span>
+<span id="cb37-8"><a href="data-munging.html#cb37-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-9"><a href="data-munging.html#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="data-munging.html#cb37-10" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> (<span class="dv">1980</span><span class="sc">:</span><span class="dv">2021</span>)</span>
+<span id="cb37-11"><a href="data-munging.html#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="data-munging.html#cb37-12" aria-hidden="true" tabindex="-1"></a>parkwide <span class="ot">&lt;-</span> years <span class="sc">%&gt;%</span> </span>
+<span id="cb37-13"><a href="data-munging.html#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">parkwide_visitation</span>(<span class="at">year =</span> .)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-14"><a href="data-munging.html#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code></pre></div>
+<div id="exercise-1-1" class="section level3 hasAnchor" number="2.1.1" style="color: maroon">
+<h3><span class="header-section-number">2.1.1</span> Exercise #1<a href="data-munging.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Using the <code>unit_visitation()</code> function from the last lesson and mapping, pull visitor data from 1980-2021 for the following park units: ROMO, ACAD, LAKE, YELL, GRCA, ZION, OLYM, and GRSM. Name the final output <code>units</code>.</strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-munging.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#copying from lesson 01</span></span>
+<span id="cb38-2"><a href="data-munging.html#cb38-2" aria-hidden="true" tabindex="-1"></a>unit_visitation <span class="ot">&lt;-</span> <span class="cf">function</span>(park_code, <span class="at">startyear=</span> <span class="dv">1980</span>, <span class="at">endyear=</span><span class="dv">2021</span>){</span>
+<span id="cb38-3"><a href="data-munging.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  raw3<span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(<span class="at">url =</span> <span class="fu">paste0</span>(<span class="st">&quot;https://irmaservices.nps.gov/v3/rest/stats/visitation?unitCodes=&quot;</span>, park_code, <span class="st">&quot;&amp;startMonth=1&amp;startYear=&quot;</span>, startyear, <span class="st">&quot;&amp;endMonth=12&amp;endYear=&quot;</span>, endyear))</span>
+<span id="cb38-4"><a href="data-munging.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  unpacked3 <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">content</span>(raw3, <span class="at">as =</span> <span class="st">&quot;text&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) </span>
+<span id="cb38-5"><a href="data-munging.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  final3<span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(unpacked3)</span>
+<span id="cb38-6"><a href="data-munging.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final3)</span>
+<span id="cb38-7"><a href="data-munging.html#cb38-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-8"><a href="data-munging.html#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="data-munging.html#cb38-9" aria-hidden="true" tabindex="-1"></a>parks<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ROMO&#39;</span>,<span class="st">&#39;ACAD&#39;</span>,<span class="st">&#39;LAKE&#39;</span>,<span class="st">&#39;YELL&#39;</span>,<span class="st">&#39;GRCA&#39;</span>,<span class="st">&#39;ZION&#39;</span>,<span class="st">&#39;OLYM&#39;</span>,<span class="st">&#39;GRSM&#39;</span>)</span>
+<span id="cb38-10"><a href="data-munging.html#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="data-munging.html#cb38-11" aria-hidden="true" tabindex="-1"></a>units<span class="ot">&lt;-</span> parks <span class="sc">%&gt;%</span></span>
+<span id="cb38-12"><a href="data-munging.html#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">unit_visitation</span>(<span class="at">park_code=</span> .))<span class="sc">%&gt;%</span></span>
+<span id="cb38-13"><a href="data-munging.html#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#gives us one dataset</span></span>
+<span id="cb38-14"><a href="data-munging.html#cb38-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="exploring-our-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Exploring our data<a href="data-munging.html#exploring-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Look at the data frame structure of <code>parkwide</code> and <code>units</code>; they’re exactly the same! So let’s go ahead and bind those together:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-munging.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#parkwide is total visitations, units is per unit how many at an individ park </span></span>
+<span id="cb39-2"><a href="data-munging.html#cb39-2" aria-hidden="true" tabindex="-1"></a>visitation <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(parkwide, units)</span></code></pre></div>
+<p>… except, the rows in <code>parkwide</code>’s UnitCode and UnitCode columns are empty. 😑 Let’s fix the <code>UnitCode</code> column to list “Parkwide” using <code>mutate()</code> and an <code>ifelse()</code> statement:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-munging.html#cb40-1" aria-hidden="true" tabindex="-1"></a>visitation <span class="ot">&lt;-</span> visitation <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="data-munging.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UnitCode =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(UnitCode), <span class="st">&quot;Parkwide&quot;</span>, UnitCode))</span></code></pre></div>
+<p>Think of the above <code>ifelse()</code> operation as: “If the column <code>UnitCode</code> is <code>NA</code>, replace <code>NA</code> with <code>Parkwide</code>. Otherwise, preserve what is already in the <code>UnitCode</code> column.”</p>
+<p>Now that we have a single data set containing all of the NPS visitation data that we’ve pulled, let’s start exploring it! But first, let’s aggregate the monthly data into annual data using <code>group_by()</code> and <code>summarize()</code>:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-munging.html#cb41-1" aria-hidden="true" tabindex="-1"></a>yearly <span class="ot">&lt;-</span> visitation <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="data-munging.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(UnitCode, Year) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="data-munging.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># we only care about recreational visitors:</span></span>
+<span id="cb41-4"><a href="data-munging.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">RecVisitation =</span> <span class="fu">sum</span>(RecreationVisitors))</span>
+<span id="cb41-5"><a href="data-munging.html#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="data-munging.html#cb41-6" aria-hidden="true" tabindex="-1"></a>yearly</span></code></pre></div>
+<p>What does visitation data look like through time? First we can try to graph all of the park units together:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-munging.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>yearly)<span class="sc">+</span></span>
+<span id="cb42-2"><a href="data-munging.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="data-munging.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="data-munging.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="data-munging.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span></code></pre></div>
+<p>… yikes, not surprisingly, parkwide visitation is wayyyy higher than our individual unit’s visitation data, making our graph pretty useless. It might be nice to have each park unit in a graph of its own.</p>
+<p>We can create individual graphs for each unit using <code>facet_wrap()</code>, and set the y-axes for each plot to <code>"free_y"</code>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-munging.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>yearly) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="data-munging.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="data-munging.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="data-munging.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="data-munging.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>UnitCode, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="data-munging.html#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span></code></pre></div>
+<p>We can also make this plot interactive by feeding it into <code>plotly</code>’s <code>ggplotly()</code> function:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-munging.html#cb44-1" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb44-2"><a href="data-munging.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>yearly) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="data-munging.html#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="data-munging.html#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="data-munging.html#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="data-munging.html#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>UnitCode, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="data-munging.html#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span>
+<span id="cb44-8"><a href="data-munging.html#cb44-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="exercise-2-1" class="section level3 hasAnchor" number="2.2.1" style="color: maroon">
+<h3><span class="header-section-number">2.2.1</span> Exercise #2<a href="data-munging.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Create an interactive graph with two separate panes: one showing park-wide visitation, the other showing all the individual park units together. Both panes should have different y-axes.</strong></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-munging.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#attempt one, not interactive </span></span>
+<span id="cb45-2"><a href="data-munging.html#cb45-2" aria-hidden="true" tabindex="-1"></a>yearly_parks<span class="ot">&lt;-</span> yearly <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="data-munging.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(UnitCode<span class="sc">==</span> <span class="st">&#39;Parkwide&#39;</span>))</span>
+<span id="cb45-4"><a href="data-munging.html#cb45-4" aria-hidden="true" tabindex="-1"></a>yearly_parkwide<span class="ot">&lt;-</span> yearly <span class="sc">%&gt;%</span></span>
+<span id="cb45-5"><a href="data-munging.html#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UnitCode<span class="sc">==</span> <span class="st">&#39;Parkwide&#39;</span>)</span>
+<span id="cb45-6"><a href="data-munging.html#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="data-munging.html#cb45-7" aria-hidden="true" tabindex="-1"></a> a<span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb45-8"><a href="data-munging.html#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span> yearly_parks, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb45-9"><a href="data-munging.html#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data=</span> yearly_parks, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb45-10"><a href="data-munging.html#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span>
+<span id="cb45-11"><a href="data-munging.html#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="data-munging.html#cb45-12" aria-hidden="true" tabindex="-1"></a> b<span class="ot">&lt;-</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb45-13"><a href="data-munging.html#cb45-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span> yearly_parkwide, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation)) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="data-munging.html#cb45-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data=</span> yearly_parkwide, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation)) <span class="sc">+</span></span>
+<span id="cb45-15"><a href="data-munging.html#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="data-munging.html#cb45-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span>
+<span id="cb45-17"><a href="data-munging.html#cb45-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="data-munging.html#cb45-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggarrange</span>(a,b, <span class="at">ncol=</span> <span class="dv">2</span>, <span class="at">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-munging.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#interactive plot</span></span>
+<span id="cb46-2"><a href="data-munging.html#cb46-2" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb46-3"><a href="data-munging.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>yearly) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="data-munging.html#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="data-munging.html#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> RecVisitation, <span class="at">color =</span> UnitCode)) <span class="sc">+</span></span>
+<span id="cb46-6"><a href="data-munging.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb46-7"><a href="data-munging.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>UnitCode <span class="sc">!=</span><span class="st">&#39;Parkwide&#39;</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">nrow=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-8"><a href="data-munging.html#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">10</span>)</span>
+<span id="cb46-9"><a href="data-munging.html#cb46-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>It is pretty clear that some park units get orders of magnitude more visitors than others. But just how much of the total park visitation do each of these parks account for from year to year? Here we walk through two methods to tackle this question, <strong><em>pivoting</em></strong> and <strong><em>joining</em></strong>, to get park unit visitation side-by-side with park-wide data.</p>
+</div>
+</div>
+<div id="pivoting" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Pivoting<a href="data-munging.html#pivoting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>changing the structure/layout of the dataframe</strong>
+Currently, our yearly data is considered <em>narrow</em> because we have all of our NPS visitation data in one column, with multiple rows representing the same year. We can make this data <em>wide</em> by using the function <code>pivot_wider()</code></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-munging.html#cb47-1" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> yearly <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="data-munging.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, UnitCode, RecVisitation) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="data-munging.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(., </span>
+<span id="cb47-4"><a href="data-munging.html#cb47-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> UnitCode,</span>
+<span id="cb47-5"><a href="data-munging.html#cb47-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> RecVisitation)</span></code></pre></div>
+<p>… where <code>names_from</code> represents the column with the values you are hoping to spread into new columns, and <code>values_from</code> represents the data you want to fill these new columns with.</p>
+<p>We can make the data set <em>narrow</em> again by using the function <code>pivot_longer()</code>:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-munging.html#cb48-1" aria-hidden="true" tabindex="-1"></a>narrow_data <span class="ot">&lt;-</span> wide_data <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="data-munging.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Year, <span class="co">#columns you dont want to be long</span></span>
+<span id="cb48-3"><a href="data-munging.html#cb48-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Park&quot;</span>,</span>
+<span id="cb48-4"><a href="data-munging.html#cb48-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;RecVisitation&quot;</span>)</span></code></pre></div>
+<p>… where <code>cols</code> are the columns we want to gather into one column (or, the column(s) you DON’T want to gather), while <code>names_to</code> and <code>values_to</code> are the names of the new columns produced from the pivot.</p>
+<div id="exercise-3-1" class="section level3 hasAnchor" number="2.3.1" style="color: maroon">
+<h3><span class="header-section-number">2.3.1</span> Exercise #3<a href="data-munging.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Using <code>wide_data</code> as the starting point, create an interactive time series plot showing the annual percentage of the total visitation made up by all park units.</strong></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-munging.html#cb49-1" aria-hidden="true" tabindex="-1"></a>park_percentage<span class="ot">&lt;-</span> wide_data <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="data-munging.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span> <span class="sc">-</span><span class="fu">c</span>(Parkwide,Year),</span>
+<span id="cb49-3"><a href="data-munging.html#cb49-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;POI&quot;</span>,</span>
+<span id="cb49-4"><a href="data-munging.html#cb49-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;RecVisitation&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-5"><a href="data-munging.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent=</span> (RecVisitation<span class="sc">/</span>Parkwide)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb49-6"><a href="data-munging.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-7"><a href="data-munging.html#cb49-7" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb49-8"><a href="data-munging.html#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(park_percentage)<span class="sc">+</span></span>
+<span id="cb49-9"><a href="data-munging.html#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>percent, <span class="at">color=</span> POI))</span>
+<span id="cb49-10"><a href="data-munging.html#cb49-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="joining" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Joining<a href="data-munging.html#joining" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Another way of getting park-wide visitation side-by-side with the park unit data is through the use of joining our original <code>units</code> and <code>parkwide</code> data sets:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-munging.html#cb50-1" aria-hidden="true" tabindex="-1"></a>joined_data <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(<span class="at">x =</span> units, <span class="at">y =</span> parkwide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Month&quot;</span>))</span></code></pre></div>
+<p>… where <code>x</code> and <code>y</code> are the two data sets you want joined, and <code>by</code> indicates the column(s) to match them by. Note: there are several ways of joining data. Explore them with <code>?`mutate-joins`</code> and <code>?`filter-joins`</code>.</p>
+<div id="exercise-4-1" class="section level3 hasAnchor" number="2.4.1" style="color: maroon">
+<h3><span class="header-section-number">2.4.1</span> Exercise #4<a href="data-munging.html#exercise-4-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Using <code>joined_data</code> as the starting point, create an interactive time series plot showing the annual percentage of the total visitation made up by all park units. This plot should look nearly identical to the previous plot.</strong></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-munging.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">##scale is off</span></span>
+<span id="cb51-2"><a href="data-munging.html#cb51-2" aria-hidden="true" tabindex="-1"></a>joined_park_percentage<span class="ot">&lt;-</span> joined_data <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="data-munging.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="data-munging.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent=</span> (RecreationVisitors.x<span class="sc">/</span>RecreationVisitors.y)<span class="sc">*</span><span class="dv">10</span>)</span>
+<span id="cb51-5"><a href="data-munging.html#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="data-munging.html#cb51-6" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb51-7"><a href="data-munging.html#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(joined_park_percentage)<span class="sc">+</span></span>
+<span id="cb51-8"><a href="data-munging.html#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>percent, <span class="at">color=</span> UnitCode.x))</span>
+<span id="cb51-9"><a href="data-munging.html#cb51-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="exercise-5-1" class="section level3 hasAnchor" number="2.4.2" style="color: maroon">
+<h3><span class="header-section-number">2.4.2</span> Exercise #5<a href="data-munging.html#exercise-5-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Which park on average has the most visitation? Which park has the least visitation? Base your response on the data starting in 1990, ending in 2021. Defend your answer with numbers!</strong></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-munging.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first attempt</span></span>
+<span id="cb52-2"><a href="data-munging.html#cb52-2" aria-hidden="true" tabindex="-1"></a>park_percentage<span class="ot">&lt;-</span>park_percentage <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="data-munging.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(POI) <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href="data-munging.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg=</span> <span class="fu">mean</span>(RecVisitation)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-5"><a href="data-munging.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>(POI) <span class="sc">%&gt;%</span></span>
+<span id="cb52-6"><a href="data-munging.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank=</span> <span class="fu">min_rank</span>(avg))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-munging.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#trying to change the structure more</span></span>
+<span id="cb53-2"><a href="data-munging.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#use mutate_at!!</span></span>
+<span id="cb53-3"><a href="data-munging.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">#park_rank&lt;- wide_data %&gt;%</span></span>
+<span id="cb53-4"><a href="data-munging.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  mutate_at(.vars = parks, .funs= ~(.mean)) </span></span>
+<span id="cb53-5"><a href="data-munging.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-6"><a href="data-munging.html#cb53-6" aria-hidden="true" tabindex="-1"></a>park_rank<span class="ot">&lt;-</span> wide_data <span class="sc">%&gt;%</span></span>
+<span id="cb53-7"><a href="data-munging.html#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1990</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-8"><a href="data-munging.html#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> parks, mean) <span class="sc">%&gt;%</span></span>
+<span id="cb53-9"><a href="data-munging.html#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year<span class="sc">==</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-10"><a href="data-munging.html#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">col=</span> <span class="sc">-</span> Year,</span>
+<span id="cb53-11"><a href="data-munging.html#cb53-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Parks&quot;</span>,</span>
+<span id="cb53-12"><a href="data-munging.html#cb53-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Average_Visitation&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-13"><a href="data-munging.html#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Year) <span class="sc">%&gt;%</span></span>
+<span id="cb53-14"><a href="data-munging.html#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(Parks<span class="sc">==</span> <span class="st">&#39;Parkwide&#39;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb53-15"><a href="data-munging.html#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank=</span>(<span class="fu">min_rank</span>(<span class="fu">desc</span>(Average_Visitation))))</span></code></pre></div>
+<p>GRSM had the most visitors with 9907814 from 1990-2021.
+ACAD had the least visitors with 2636266 from 1990-2021.</p>
+
+<p>#Denouement</p>
+</div>
+</div>
+<div id="lesson-objectives-2" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Lesson Objectives:<a href="data-munging.html#lesson-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lesson you will take all of the skills you have learned up to this point and use them on a completely new set of data. This lesson has <strong>five exercises</strong> that need to be completed.</p>
+<div id="necessary-packages" class="section level4 hasAnchor" number="2.5.0.1">
+<h4><span class="header-section-number">2.5.0.1</span> Necessary packages:<a href="data-munging.html#necessary-packages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-munging.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb54-2"><a href="data-munging.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb54-3"><a href="data-munging.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb54-4"><a href="data-munging.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb54-5"><a href="data-munging.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb54-6"><a href="data-munging.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb54-7"><a href="data-munging.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) <span class="co"># for the map</span></span>
+<span id="cb54-8"><a href="data-munging.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview) <span class="co"># for making the interactive plot</span></span></code></pre></div>
+</div>
+</div>
+<div id="streaflow-datasets" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Streaflow Datasets<a href="data-munging.html#streaflow-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are interested in looking at how the Cache la Poudre River’s flow changes as it travels out of the mountainous Poudre Canyon and through Fort Collins.</p>
+<p>There are four stream flow monitoring sites on the Poudre that we are interested in: two managed by the US Geological Survey (USGS), and two managed by the Colorado Division of Water Resources (CDWR):</p>
+<div id="usgs-dataretrieval-r-package" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> USGS <code>dataRetrieval</code> R package<a href="data-munging.html#usgs-dataretrieval-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To pull data for USGS stream gages, we can use the <code>dataRetrieval</code> package, which is a USGS-managed set of functions that, much like our functions from Lesson 3.1, pull data from the USGS’s data warehouse using an API. Here we will pull flow data for our USGS stream gages of interest for the last two water years:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="data-munging.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pulls USGS daily (&#39;dv&#39;) stream flow data:</span></span>
+<span id="cb55-2"><a href="data-munging.html#cb55-2" aria-hidden="true" tabindex="-1"></a>usgs <span class="ot">&lt;-</span> dataRetrieval<span class="sc">::</span><span class="fu">readNWISdv</span>(<span class="at">siteNumbers =</span> <span class="fu">c</span>(<span class="st">&quot;06752260&quot;</span>, <span class="st">&quot;06752280&quot;</span>), <span class="co"># USGS site code for the Poudre River at the Lincoln Bridge and the ELC</span></span>
+<span id="cb55-3"><a href="data-munging.html#cb55-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">parameterCd =</span> <span class="st">&quot;00060&quot;</span>, <span class="co"># USGS code for stream flow</span></span>
+<span id="cb55-4"><a href="data-munging.html#cb55-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">startDate =</span> <span class="st">&quot;2020-10-01&quot;</span>, <span class="co"># YYYY-MM-DD formatting</span></span>
+<span id="cb55-5"><a href="data-munging.html#cb55-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">endDate =</span> <span class="st">&quot;2022-09-30&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># YYYY-MM-DD formatting</span></span>
+<span id="cb55-6"><a href="data-munging.html#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">q_cfs =</span> X_00060_00003) <span class="sc">%&gt;%</span> <span class="co"># USGS code for stream flow units in cubic feet per second (CFS)</span></span>
+<span id="cb55-7"><a href="data-munging.html#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(Date), <span class="co"># convert the Date column to &quot;Date&quot; formatting using the `lubridate` package</span></span>
+<span id="cb55-8"><a href="data-munging.html#cb55-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">Site =</span> <span class="fu">case_when</span>(site_no <span class="sc">==</span> <span class="st">&quot;06752260&quot;</span> <span class="sc">~</span> <span class="st">&quot;Lincoln&quot;</span>, </span>
+<span id="cb55-9"><a href="data-munging.html#cb55-9" aria-hidden="true" tabindex="-1"></a>                          site_no <span class="sc">==</span> <span class="st">&quot;06752280&quot;</span> <span class="sc">~</span> <span class="st">&quot;Boxelder&quot;</span>))</span></code></pre></div>
+</div>
+<div id="cdwrs-api" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> CDWR’s API<a href="data-munging.html#cdwrs-api" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Alas, CDWR does NOT have an R package that pulls data from <a href="https://dwr.state.co.us/Rest/GET/Help#Datasets&amp;#SurfaceWaterController&amp;#gettingstarted&amp;#jsonxml">their API</a>, but they do have user-friendly directions on how to develop API calls.</p>
+<p>Using the “URL generator” steps outlined for their <a href="https://dwr.state.co.us/Rest/GET/Help/SurfaceWaterTSDayGenerator">daily surface water time series data set</a>, we can get the last two water years of CFS data for the Poudre at the Canyon mouth (site abbreviation = CLAFTCCO) using the following URL:</p>
+<p><a href="https://dwr.state.co.us/Rest/GET/api/v2/surfacewater/surfacewatertsday/?format=json&amp;dateFormat=dateOnly&amp;fields=abbrev%2CmeasDate%2Cvalue%2CmeasUnit&amp;encoding=deflate&amp;abbrev=CLAFTCCO&amp;min-measDate=10%2F01%2F2020&amp;max-measDate=09%2F30%2F2022" class="uri">https://dwr.state.co.us/Rest/GET/api/v2/surfacewater/surfacewatertsday/?format=json&amp;dateFormat=dateOnly&amp;fields=abbrev%2CmeasDate%2Cvalue%2CmeasUnit&amp;encoding=deflate&amp;abbrev=CLAFTCCO&amp;min-measDate=10%2F01%2F2020&amp;max-measDate=09%2F30%2F2022</a></p>
+</div>
+</div>
+<div id="exercise-1-2" class="section level2 hasAnchor" number="2.7" style="color: maroon">
+<h2><span class="header-section-number">2.7</span> Exercise #1<a href="data-munging.html#exercise-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using the URL above as the starting point, develop a function that creates a data frame of CDWR daily flow (CFS) data for a selected range of water years, for any site. (HINT: The final product of our API pull is a list with additional metadata about our API pull… how do we index a list to extract the time series flow data?)</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-munging.html#cb56-1" aria-hidden="true" tabindex="-1"></a>CDWR_data<span class="ot">&lt;-</span> <span class="cf">function</span>(site, s_wyear, e_wyear){</span>
+<span id="cb56-2"><a href="data-munging.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  raw_data <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(<span class="at">url =</span> <span class="fu">paste0</span>( <span class="st">&quot;https://dwr.state.co.us/Rest/GET/api/v2/surfacewater/surfacewatertsday/?format=json&amp;dateFormat=dateOnly&amp;fields=abbrev%2CmeasDate%2Cvalue%2CmeasUnit&amp;encoding=deflate&amp;abbrev=&quot;</span>,site,<span class="st">&quot;&amp;min-measDate=10%2F01%2F&quot;</span>,s_wyear,<span class="st">&quot;&amp;max-measDate=09%2F30%2F&quot;</span>,e_wyear))</span>
+<span id="cb56-3"><a href="data-munging.html#cb56-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb56-4"><a href="data-munging.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  unpacked_data <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">content</span>(raw_data, <span class="at">as =</span> <span class="st">&quot;text&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) </span>
+<span id="cb56-5"><a href="data-munging.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="data-munging.html#cb56-6" aria-hidden="true" tabindex="-1"></a>  final_data <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(unpacked_data)</span>
+<span id="cb56-7"><a href="data-munging.html#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#index to only see the dataframe in the output</span></span>
+<span id="cb56-8"><a href="data-munging.html#cb56-8" aria-hidden="true" tabindex="-1"></a>  final_data<span class="ot">&lt;-</span> final_data<span class="sc">$</span>ResultList</span>
+<span id="cb56-9"><a href="data-munging.html#cb56-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-10"><a href="data-munging.html#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="data-munging.html#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="data-munging.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co">#testing our fuction</span></span>
+<span id="cb56-13"><a href="data-munging.html#cb56-13" aria-hidden="true" tabindex="-1"></a>test_claftcco2020<span class="ot">&lt;-</span> <span class="fu">CDWR_data</span>(<span class="at">site=</span><span class="st">&quot;CLAFTCCO&quot;</span>, <span class="at">s_wyear=</span><span class="dv">2019</span>, <span class="at">e_wyear=</span><span class="dv">2020</span>)</span></code></pre></div>
+</div>
+<div id="exercise-2-2" class="section level2 hasAnchor" number="2.8" style="color: maroon">
+<h2><span class="header-section-number">2.8</span> Exercise #2<a href="data-munging.html#exercise-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Map over the function you developed in Exercise #1 to pull flow data for CLAFTCCO and CLARIVCO for the 2021 and 2022 water years.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="data-munging.html#cb57-1" aria-hidden="true" tabindex="-1"></a>sites<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CLAFTCCO&quot;</span>,<span class="st">&quot;CLARIVCO&quot;</span>)</span>
+<span id="cb57-2"><a href="data-munging.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="data-munging.html#cb57-3" aria-hidden="true" tabindex="-1"></a>CDWR_pulls<span class="ot">&lt;-</span> sites <span class="sc">%&gt;%</span></span>
+<span id="cb57-4"><a href="data-munging.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">CDWR_data</span>(.,<span class="at">s_wyear =</span> <span class="dv">2020</span>,<span class="at">e_wyear =</span> <span class="dv">2022</span>))</span>
+<span id="cb57-5"><a href="data-munging.html#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="data-munging.html#cb57-6" aria-hidden="true" tabindex="-1"></a>multi_site_CDWR <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(CDWR_pulls)</span></code></pre></div>
+</div>
+<div id="exercise-3-2" class="section level2 hasAnchor" number="2.9" style="color: maroon">
+<h2><span class="header-section-number">2.9</span> Exercise #3<a href="data-munging.html#exercise-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Join our USGS and CDWR data frames together (<code>bind_rows()</code>, perhaps?), then create an interactive ggplot of discharge (in CFS) through time displaying all four of our monitoring sites. Be sure all axes and labels are clear.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-munging.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#making our CDWR look like the usgs output with names </span></span>
+<span id="cb58-2"><a href="data-munging.html#cb58-2" aria-hidden="true" tabindex="-1"></a>multi_site_CDWR <span class="ot">&lt;-</span> multi_site_CDWR <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="data-munging.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">agency_cd=</span><span class="st">&#39;CDWR&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-4"><a href="data-munging.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Site=</span>abbrev,<span class="at">Date=</span>measDate, <span class="at">q_cfs=</span>value) <span class="sc">%&gt;%</span></span>
+<span id="cb58-5"><a href="data-munging.html#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-6"><a href="data-munging.html#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (<span class="fu">c</span>(Site,Date,q_cfs,agency_cd))</span>
+<span id="cb58-7"><a href="data-munging.html#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="data-munging.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">#binding</span></span>
+<span id="cb58-9"><a href="data-munging.html#cb58-9" aria-hidden="true" tabindex="-1"></a>all_data<span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(multi_site_CDWR,usgs)<span class="sc">%&gt;%</span></span>
+<span id="cb58-10"><a href="data-munging.html#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(Site,Date,q_cfs))</span>
+<span id="cb58-11"><a href="data-munging.html#cb58-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="data-munging.html#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co">#interactive plot</span></span>
+<span id="cb58-13"><a href="data-munging.html#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="data-munging.html#cb58-14" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb58-15"><a href="data-munging.html#cb58-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(all_data)<span class="sc">+</span></span>
+<span id="cb58-16"><a href="data-munging.html#cb58-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>q_cfs, <span class="at">color=</span> Site))<span class="sc">+</span></span>
+<span id="cb58-17"><a href="data-munging.html#cb58-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Discharge (cfs)&quot;</span>)</span>
+<span id="cb58-18"><a href="data-munging.html#cb58-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="exercise-4-2" class="section level2 hasAnchor" number="2.10" style="color: maroon">
+<h2><span class="header-section-number">2.10</span> Exercise #4<a href="data-munging.html#exercise-4-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Create an interactive plot of the daily difference in discharge between the Cache la Poudre River at the canyon mouth and each of the sites downstream. Make sure your plot axes are clear.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="data-munging.html#cb59-1" aria-hidden="true" tabindex="-1"></a>all_data<span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="data-munging.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Site,</span>
+<span id="cb59-3"><a href="data-munging.html#cb59-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> q_cfs) <span class="sc">%&gt;%</span></span>
+<span id="cb59-4"><a href="data-munging.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">col=</span> <span class="sc">-</span><span class="fu">c</span>(CLAFTCCO, Date),</span>
+<span id="cb59-5"><a href="data-munging.html#cb59-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Site&quot;</span>,</span>
+<span id="cb59-6"><a href="data-munging.html#cb59-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;q_cfs&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-7"><a href="data-munging.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">difference_daily=</span> (CLAFTCCO<span class="sc">-</span>q_cfs))</span>
+<span id="cb59-8"><a href="data-munging.html#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="data-munging.html#cb59-9" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(</span>
+<span id="cb59-10"><a href="data-munging.html#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(all_data)<span class="sc">+</span></span>
+<span id="cb59-11"><a href="data-munging.html#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>difference_daily, <span class="at">color=</span> Site))<span class="sc">+</span></span>
+<span id="cb59-12"><a href="data-munging.html#cb59-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">&quot;Daily Difference in Discharge (cfs)&quot;</span> ))</span></code></pre></div>
+</div>
+<div id="exercise-5-2" class="section level2 hasAnchor" number="2.11" style="color: maroon">
+<h2><span class="header-section-number">2.11</span> Exercise #5<a href="data-munging.html#exercise-5-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For each of our downstream locations, calculate how many days the canyon mouth had LOWER flow. Is this what you expected? Why or why not?</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="data-munging.html#cb60-1" aria-hidden="true" tabindex="-1"></a>all_data<span class="sc">$</span>difference_daily<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(all_data<span class="sc">$</span>difference_daily)</span>
+<span id="cb60-2"><a href="data-munging.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="data-munging.html#cb60-3" aria-hidden="true" tabindex="-1"></a>test_low_flow<span class="ot">&lt;-</span> all_data <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="data-munging.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(difference_daily <span class="sc">&lt;</span> <span class="dv">0</span>) </span></code></pre></div>
+<p>I didn’t know what to expect. 105 observations out of a single year’s total observations (365) doesn’t seem high considering we have so much land use change (ie. reservoirs release water into channel ditches removing water from the channel) due to seasonal water flows and demand.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="apis-and-iteration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="my-intro-this-is-not-a-chapter-this-is-just-a-header.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
